@@ -86,7 +86,7 @@ When a match is found, the user receives:
 
 👥 Developers
 
-Kushagra
+Kushagra Yadav
 📧 kushagra.24bai10536@vitbhopal.ac.in
 🏫 VIT Bhopal University
 
