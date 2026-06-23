@@ -2177,7 +2177,7 @@ function filterSearch() {
     var itemText = (card.querySelector('.list-info') ? card.querySelector('.list-info').textContent : '').toLowerCase();
 
     var textMatch = !query || name.includes(query) || category.includes(query) || itemText.includes(query);
-
+//
     var chipMatch = true;
     if (filter === 'lost') chipMatch = type === 'lost';
     else if (filter === 'found') chipMatch = type === 'found';
