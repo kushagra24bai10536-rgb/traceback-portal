@@ -1,101 +1,91 @@
-# 🔍 TraceBack — Smart Lost & Found Portal
+# TraceBack – Smart Lost and Found Portal
 
-> An AI-powered Lost & Found web portal built as a single-page application. Designed to help students and staff report, search, and recover lost items quickly and efficiently.
-
----
-
-## 🚀 Live Demo
-
-> Open `index.html` in any browser — no installation needed.
+this is our project for the semester – a smart lost and found portal called **TraceBack**.  
+the idea came from the fact that losing stuff on campus is super annoying and there's no proper system to recover it.
 
 ---
 
-## ✨ Features
+## what does it do
 
-- **AI Match Engine** — Scans reported items and returns a confidence score for each match
-- **Report Lost / Found Items** — Simple form with category, description, date, location & image upload
-- **Smart Search Registry** — Real-time search with category detection (type "watch" → searches Watches, type "id card" → searches Documents & IDs)
-- **Match Results** — Animated scanning sequence with candidate comparison and confidence breakdown
-- **Finder Contact Info** — Auto-generated 10-digit contact number, pickup location near Parcel Area, and toll-free helpline
-- **Collapsible Sidebar** — Toggle between full labels and icon-only mode
-- **Time-Based Greeting** — Greets user based on time of day (Morning / Afternoon / Evening / Night)
-- **Messages** — Anonymous chat system between finder and owner
-- **Notifications** — Real-time alert feed
-- **Profile Page** — Edit personal info and notification settings
+basically if you lost something (wallet, keys, phone etc) you can report it here.  
+if someone found something they can report that too.  
+the system then tries to match them using AI and shows a confidence score.  
+if match is found, the finder and owner can connect and collect the item from near the parcel area.
 
 ---
 
-## 🛠️ Tech Stack
+## tech stack
 
-| Technology | Usage |
-|---|---|
-| HTML5 | Structure |
-| CSS3 | Styling, animations, transitions |
-| Vanilla JavaScript | All logic, filtering, animations |
-| Google Fonts | DM Sans + Fraunces typefaces |
-| SVG | All icons and radar graphic |
+we planned and are building this using:
 
-> **No frameworks. No libraries. No build tools.** Pure HTML/CSS/JS — works offline.
+- **Frontend** – HTML, CSS, Vanilla JavaScript (this repo is the UI prototype)
+- **Backend** – FastAPI (Python) — handles the API calls and matching logic
+- **AI / ML** – TensorFlow — for image-based feature extraction and matching
+- **Database** – SQLite — stores item reports, user data, match records
+- **Mobile** – Flutter — for the mobile version (planned)
+- **Auth & Realtime** – Firebase — for login and live notifications
+
+> right now this repo has the complete frontend prototype.  
+> the FastAPI backend and TensorFlow model are being integrated separately.  
+> we built the UI first so we could show the full user flow clearly.
 
 ---
 
-## 📁 Project Structure
+## what's working in this prototype
+
+- landing page with how it works section
+- report lost item form
+- report found item form  
+- AI scan animation with confidence score (simulated for prototype)
+- search registry with real-time filter (type watch → searches watches only)
+- match results page with contact number and pickup location
+- collapsible sidebar
+- time based greeting (good morning / evening etc)
+- messages, notifications, profile pages
+- my reports section
+
+---
+
+## how to run
+
+just open `index.html` in chrome or any browser. no setup needed for the prototype.
+
+for the full backend setup (FastAPI + SQLite) — that's in a separate branch (coming soon).
+
+---
+
+## folder structure
 
 ```
 traceback-portal/
-│
-└── index.html        # Complete single-file application
-└── README.md         # Project documentation
+├── index.html      (complete frontend prototype)
+├── README.md       (this file)
+└── LICENSE         (MIT)
 ```
 
 ---
 
-## 🖥️ How to Run
+## pickup & contact info
 
-1. Download or clone this repository
-2. Open `index.html` in any modern browser (Chrome, Firefox, Edge)
-3. That's it — no server, no npm, no setup needed
-
----
-
-## 📸 Pages & Screens
-
-| Screen | Description |
-|---|---|
-| Landing Page | Hero section with radar animation, features, how-it-works |
-| Dashboard | Stats overview, quick actions, recent activity |
-| Report Lost | Form to report a lost item with image upload |
-| Report Found | Form to report a found item |
-| Match Results | AI scan animation → confidence score → contact info |
-| Search Registry | Browse & filter all reported items |
-| My Reports | View your submitted reports |
-| Messages | Chat with finders/owners |
-| Notifications | Alert feed |
-| Profile | Edit name, email, preferences |
+when a match is found the user gets:
+- a 10 digit contact number of the finder
+- pickup location: near parcel area, main gate – security desk
+- helpline: 1800-123-4567 (toll free)
 
 ---
 
-## 📞 Contact & Pickup Info (on Match)
+## team
 
-When a match is found, the user receives:
-- 🔢 A unique **10-digit finder contact number**
-- 📍 **Pickup location:** Near Parcel Area, Main Gate — Security Desk, Ground Floor
-- ☎️ **Helpline:** 1800-123-4567 (Toll Free, 24×7)
+**Kushagra Yadav**  
+kushagra.24bai10536@vitbhopal.ac.in  
+VIT Bhopal University
 
----
-
-👥 Developers
-
-Kushagra Yadav
-📧 kushagra.24bai10536@vitbhopal.ac.in
-🏫 VIT Bhopal University
-
-Vinit Agarwal
-📧 vinit.24bmr10007@vitbhopal.ac.in
-🏫 VIT Bhopal University
+**Vinit Agarwal**  
+vinit.24bmr10007@vitbhopal.ac.in  
+VIT Bhopal University
 
 ---
 
-## 📄 License
+## license
 
-This project is open source and available under the [MIT License](LICENSE).
+MIT License – see LICENSE file
