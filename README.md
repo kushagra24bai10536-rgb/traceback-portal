@@ -84,10 +84,14 @@ When a match is found, the user receives:
 
 ---
 
-## 👤 Developer
+👥 Developers
 
-**Kushagra**
+Kushagra
 📧 kushagra.24bai10536@vitbhopal.ac.in
+🏫 VIT Bhopal University
+
+Vinit Agarwal
+📧 vinit.24bmr10007@vitbhopal.ac.in
 🏫 VIT Bhopal University
 
 ---
