@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<!-- 
+  project - traceback (lost and found)
+  made by kushagra and vinit
+  VIT bhopal - 2025
+
+  this is the frontend prototype for our TraceBack portal
+  backend will use FastAPI + Python, database is SQLite
+  AI matching part will be TensorFlow (still figuring that out lol)
+  for now the UI is pure HTML/CSS/JS so we can show the flow
+
+  NOTE: dont touch the scan animation part it took forever to get right
+  also the search filter logic - vinit spent a whole day on that
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -1447,11 +1460,14 @@ function goToApp(tab) {
   document.getElementById('page-app').classList.add('active');
   switchTab(tab || 'dashboard');
 }
+// goes back to landing page
 function goToLanding() {
   document.getElementById('page-app').classList.remove('active');
   document.getElementById('page-landing').classList.add('active');
 }
 
+// this function handles all tab switching
+// vinit wanted separate pages but this is easier lol
 function switchTab(tab) {
   ALL_TABS.forEach(t => {
     const el = document.getElementById('tab-' + t);
@@ -1477,6 +1493,8 @@ function switchTab(tab) {
   }
 }
 
+// handles form submit and triggers the scan
+// had a bug here where animation ran twice, fixed it by reordering
 function submitReport() {
   const btn = document.getElementById('submit-btn');
   const spinner = document.getElementById('spinner');
@@ -1489,6 +1507,7 @@ function submitReport() {
     runScanAnimation();
     return;
   }
+  console.log('form submitted');
   spinner.style.display = 'block'; label.textContent = 'Processing…'; btn.disabled = true;
   setTimeout(() => {
     spinner.style.display = 'none'; label.textContent = 'Submit Lost Report'; btn.disabled = false;
@@ -1501,6 +1520,8 @@ function submitReport() {
   }, 1600);
 }
 
+// category data - kushagra added this
+// each category has its own items and stuff
 // ── CATEGORY PROFILES: drives the entire scan & reveal ──
 var CATEGORY_PROFILES = {
   'Electronics': {
@@ -1625,6 +1646,8 @@ function populateResults() {
   if (rl) rl.textContent = locVal;
 }
 
+// ok so this took me like 3 days to get working properly
+// dont ask why there are so many timeouts, it just works
 function runScanAnimation() {
   // ── reset UI ──
   const steps = [0,1,2,3,4];
@@ -1666,6 +1689,7 @@ function runScanAnimation() {
     else scanPhase.appendChild(logWrap);
     logBox = logWrap;
   }
+  console.log('scan started');
   logBox.innerHTML = '';
 
   // ── populate candidate cards from profile ──
@@ -1942,6 +1966,8 @@ function showSubSignals() {
   wrap.style.animation = 'pop-in 0.4s ease';
 }
 
+// closes the reveal overlay and shows result
+// also generates the contact number here
 function closeRevealAndShow() {
   const overlay = document.getElementById('match-reveal-overlay');
   if (overlay) {
@@ -2011,6 +2037,7 @@ function handleDrop(e) {
   }
 }
 
+// simple toast notification - reused everywhere
 function showToast(msg) {
   const t = document.getElementById('toast');
   document.getElementById('toast-msg').textContent = msg;
@@ -2047,8 +2074,11 @@ document.querySelectorAll('.chip').forEach(chip => {
 });
 
 // ── CONTACT NUMBER GENERATOR ──
+// generates a random 10 digit number for the finder
+// vinit suggested this feature
 function generatePhone() {
   // Always starts with 6,7,8,9 (valid Indian mobile)
+  // make sure starts with valid indian mobile digit
   var starts = ['6','7','8','9'];
   var num = starts[Math.floor(Math.random() * starts.length)];
   for (var i = 0; i < 9; i++) num += Math.floor(Math.random() * 10);
@@ -2077,6 +2107,8 @@ function copyText(text, btn) {
 }
 
 // ── TIME-BASED GREETING ──
+// greeting based on time - simple enough
+// had to google the hour ranges lol
 function setGreeting() {
   var h = new Date().getHours();
   var greet;
@@ -2086,13 +2118,17 @@ function setGreeting() {
   else                          greet = 'Good night';
   var el = document.getElementById('dash-greeting');
   if (el) el.textContent = greet + ', Kushagra 👋';
+  // TODO: make name dynamic from profile
 }
 setGreeting();
 
 // ── SIDEBAR TOGGLE ──
 var _sidebarCollapsed = false;
+// sidebar collapse button
+// spent way too long on the css for this
 function toggleSidebar() {
   _sidebarCollapsed = !_sidebarCollapsed;
+  // console.log('sidebar state:', _sidebarCollapsed);
   var sb = document.getElementById('sidebar');
   var mc = document.querySelector('.main-content');
   var icon = document.getElementById('toggle-icon');
@@ -2123,6 +2159,8 @@ function setSearchChip(chip, filter) {
   filterSearch();
 }
 
+// search filter - took a while to figure out the logic
+// basically checks name and category both
 function filterSearch() {
   var query = (document.getElementById('search-input') ? document.getElementById('search-input').value : '').toLowerCase().trim();
   var filter = _searchActiveFilter;
@@ -2177,7 +2215,7 @@ function filterSearch() {
     var itemText = (card.querySelector('.list-info') ? card.querySelector('.list-info').textContent : '').toLowerCase();
 
     var textMatch = !query || name.includes(query) || category.includes(query) || itemText.includes(query);
-//
+
     var chipMatch = true;
     if (filter === 'lost') chipMatch = type === 'lost';
     else if (filter === 'found') chipMatch = type === 'found';
@@ -2188,6 +2226,7 @@ function filterSearch() {
     if (show) visible++;
   });
 
+  // TODO: maybe add animation when no results found
   var emptyEl = document.getElementById('search-empty');
   if (emptyEl) emptyEl.style.display = visible === 0 ? '' : 'none';
 }
