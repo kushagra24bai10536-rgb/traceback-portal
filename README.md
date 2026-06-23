@@ -1,22 +1,22 @@
 # TraceBack – Smart Lost and Found Portal
 
-this is our project for the semester – a smart lost and found portal called **TraceBack**.  
-the idea came from the fact that losing stuff on campus is super annoying and there's no proper system to recover it.
+This is our project for the semester – a smart lost and found portal called **TraceBack**.  
+The idea came from the fact that losing stuff on campus is super annoying and there's no proper system to recover it.
 
 ---
 
-## what does it do
+## What does it do
 
-basically if you lost something (wallet, keys, phone etc) you can report it here.  
-if someone found something they can report that too.  
-the system then tries to match them using AI and shows a confidence score.  
-if match is found, the finder and owner can connect and collect the item from near the parcel area.
+Basically if you lost something (wallet, keys, phone etc) you can report it here.  
+Tf someone found something they can report that too.  
+The system then tries to match them using AI and shows a confidence score.  
+Tf match is found, the finder and owner can connect and collect the item from near the parcel area.
 
 ---
 
-## tech stack
+## Tech stack
 
-we planned and are building this using:
+We planned and are building this using:
 
 - **Frontend** – HTML, CSS, Vanilla JavaScript (this repo is the UI prototype)
 - **Backend** – FastAPI (Python) — handles the API calls and matching logic
@@ -31,7 +31,7 @@ we planned and are building this using:
 
 ---
 
-## what's working in this prototype
+## What's working in this prototype
 
 - landing page with how it works section
 - report lost item form
@@ -46,7 +46,7 @@ we planned and are building this using:
 
 ---
 
-## how to run
+## How to run
 
 just open `index.html` in chrome or any browser. no setup needed for the prototype.
 
@@ -54,7 +54,7 @@ for the full backend setup (FastAPI + SQLite) — that's in a separate branch (c
 
 ---
 
-## folder structure
+## Folder structure
 
 ```
 traceback-portal/
@@ -65,7 +65,7 @@ traceback-portal/
 
 ---
 
-## pickup & contact info
+## Pickup & contact info
 
 when a match is found the user gets:
 - a 10 digit contact number of the finder
@@ -74,7 +74,7 @@ when a match is found the user gets:
 
 ---
 
-## team
+## Team
 
 **Kushagra Yadav**  
 kushagra.24bai10536@vitbhopal.ac.in  
@@ -86,6 +86,6 @@ VIT Bhopal University
 
 ---
 
-## license
+## License
 
 MIT License – see LICENSE file
