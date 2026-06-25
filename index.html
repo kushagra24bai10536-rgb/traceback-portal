@@ -1,17 +1,4 @@
 <!DOCTYPE html>
-<!-- 
-  project - traceback (lost and found)
-  made by kushagra and vinit
-  VIT bhopal - 2025
-
-  this is the frontend prototype for our TraceBack portal
-  backend will use FastAPI + Python, database is SQLite
-  AI matching part will be TensorFlow (still figuring that out lol)
-  for now the UI is pure HTML/CSS/JS so we can show the flow
-
-  NOTE: dont touch the scan animation part it took forever to get right
-  also the search filter logic - vinit spent a whole day on that
--->
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -536,9 +523,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
 </head>
 <body>
 
-<!-- ══════════════════════════
-     LANDING PAGE
-══════════════════════════ -->
 <div id="page-landing" class="page active">
   <nav class="lnav">
     <a class="llogo" href="#">
@@ -578,31 +562,24 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
         </div>
       </div>
 
-      <!-- RADAR — signature element -->
       <div class="radar-wrap">
         <svg class="radar-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Grid rings -->
           <circle class="radar-ring" cx="200" cy="200" r="170"/>
           <circle class="radar-ring" cx="200" cy="200" r="127"/>
           <circle class="radar-ring" cx="200" cy="200" r="85"/>
           <circle class="radar-ring" cx="200" cy="200" r="42"/>
-          <!-- Cross hairs -->
           <line x1="200" y1="30" x2="200" y2="370" stroke="rgba(91,79,232,0.1)" stroke-width="1"/>
           <line x1="30" y1="200" x2="370" y2="200" stroke="rgba(91,79,232,0.1)" stroke-width="1"/>
-          <!-- Sweep -->
           <g class="radar-sweep">
             <path d="M200 200 L200 30 A170 170 0 0 1 370 200 Z" fill="url(#sweepGrad)" opacity="0.35"/>
             <line x1="200" y1="200" x2="200" y2="30" stroke="rgba(91,79,232,0.8)" stroke-width="2"/>
           </g>
-          <!-- Dots (items) -->
           <circle class="radar-dot" cx="280" cy="140" r="6" fill="#5B4FE8" style="animation-delay:0.5s"/>
           <circle class="radar-dot" cx="140" cy="260" r="5" fill="#2DD4A0" style="animation-delay:1.2s"/>
           <circle class="radar-dot" cx="300" cy="270" r="4" fill="#FF6B6B" style="animation-delay:2s"/>
           <circle class="radar-dot" cx="100" cy="150" r="5" fill="#F59E0B" style="animation-delay:0.8s"/>
-          <!-- Center -->
           <circle cx="200" cy="200" r="8" fill="rgba(91,79,232,0.6)"/>
           <circle cx="200" cy="200" r="3" fill="white"/>
-          <!-- Legend dots -->
           <defs>
             <radialGradient id="sweepGrad" cx="0%" cy="0%" r="100%">
               <stop offset="0%" stop-color="#5B4FE8" stop-opacity="0.6"/>
@@ -611,7 +588,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
           </defs>
         </svg>
 
-        <!-- Floating cards -->
         <div class="radar-card radar-card-1">
           <div class="radar-card-icon" style="background:rgba(91,79,232,0.2)">
             <svg width="18" height="18" fill="none" stroke="#9B8FFF" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -709,9 +685,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
 </div>
 
 
-<!-- ══════════════════════════
-     APP SHELL
-══════════════════════════ -->
 <div id="page-app" class="page">
   <aside class="sidebar" id="sidebar">
     <div class="sb-logo">
@@ -790,7 +763,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
       </div>
     </div>
 
-    <!-- ─── DASHBOARD HOME ─── -->
     <div id="tab-dashboard" class="inner-wrap">
       <div class="pg-title" id="dash-greeting">👋</div>
       <div class="pg-sub">Here's what's happening with your items.</div>
@@ -877,7 +849,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
       </div>
     </div>
 
-    <!-- ─── REPORT LOST ─── -->
     <div id="tab-report-lost" class="inner-wrap" style="display:none">
       <div class="pg-title">Report a Lost Item</div>
       <div class="pg-sub">Describe your item in detail to improve match accuracy.</div>
@@ -934,7 +905,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
       </div>
     </div>
 
-    <!-- ─── REPORT FOUND ─── -->
     <div id="tab-report-found" class="inner-wrap" style="display:none">
       <div class="pg-title">Report a Found Item</div>
       <div class="pg-sub">Help reunite someone with their belongings.</div>
@@ -967,15 +937,12 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
       </div>
     </div>
 
-    <!-- ─── MATCH RESULTS ─── -->
     <div id="tab-results" class="inner-wrap" style="display:none">
 
-      <!-- AI SCANNING PHASE -->
       <div id="scan-phase">
         <div class="pg-title">Scanning Database…</div>
         <div class="pg-sub">Our AI is comparing your item against all open reports.</div>
 
-        <!-- scan steps -->
         <div class="card card-pad" style="margin-bottom:20px">
           <div id="scan-steps">
             <div class="scan-step" id="sstep-0">
@@ -1030,7 +997,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
             </div>
           </div>
 
-          <!-- progress bar -->
           <div style="margin-top:20px">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
               <span style="font-size:0.78rem;font-weight:600;color:var(--muted)">Scanning progress</span>
@@ -1042,7 +1008,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
           </div>
         </div>
 
-        <!-- candidate photos strip -->
         <div class="card card-pad" style="margin-bottom:20px">
           <div style="font-size:0.88rem;font-weight:700;margin-bottom:14px">Candidate items found nearby</div>
           <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px" id="candidate-grid">
@@ -1085,7 +1050,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
           </div>
         </div>
 
-        <!-- live counter -->
         <div style="display:flex;gap:14px;margin-bottom:20px">
           <div class="dstat" style="flex:1">
             <div class="dstat-label">Reports Scanned</div>
@@ -1102,7 +1066,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
         </div>
       </div>
 
-      <!-- RESULT PHASE (hidden until scan done) -->
       <div id="result-phase" style="display:none">
         <div class="pg-title">Match Results</div>
         <div class="pg-sub">AI scan complete — here's what we found.</div>
@@ -1117,7 +1080,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
           </div>
         </div>
 
-        <!-- Animated score reveal -->
         <div class="meter-card" style="margin-bottom:20px">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
             <h3>Match Confidence</h3>
@@ -1137,7 +1099,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
             <span style="color:var(--mint)">High</span>
           </div>
 
-          <!-- signal breakdown -->
           <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
             <div class="signal-row"><span class="signal-label">Category match</span><div class="signal-bar-wrap"><div class="signal-bar" style="width:100%;background:var(--mint)"></div></div><span class="signal-val">100%</span></div>
             <div class="signal-row"><span class="signal-label">Visual similarity</span><div class="signal-bar-wrap"><div class="signal-bar" style="width:88%;background:var(--mint)"></div></div><span class="signal-val">88%</span></div>
@@ -1146,37 +1107,15 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
           </div>
         </div>
 
-        <!-- ─── CONTACT & PICKUP INFO ─── -->
         <div class="contact-card">
           <div class="contact-card-title">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15z"/></svg>
-            How to Collect Your Item
+            Where to Submit the Found Item
           </div>
 
           <div class="helpline-badge">
             <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01" stroke="white" stroke-width="2" fill="none"/></svg>
             24 × 7 Support Available
-          </div>
-
-          <div class="contact-row">
-            <div class="contact-icon" style="background:rgba(91,79,232,0.18)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#9B8FFF" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15z"/></svg>
-            </div>
-            <div style="flex:1">
-              <div class="contact-label">Finder's Contact Number</div>
-              <div class="contact-value" id="finder-phone">—</div>
-            </div>
-            <button class="copy-btn" onclick="copyContact('finder-phone', this)">Copy</button>
-          </div>
-
-          <div class="contact-row">
-            <div class="contact-icon" style="background:rgba(45,212,160,0.15)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#2DD4A0" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
-            </div>
-            <div style="flex:1">
-              <div class="contact-label">Pickup Location</div>
-              <div class="contact-value" id="pickup-location">Near Parcel Area, Main Gate — Security Desk, Ground Floor</div>
-            </div>
           </div>
 
           <div class="contact-row">
@@ -1190,8 +1129,18 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
             <button class="copy-btn" onclick="copyText('18001234567', this)">Copy</button>
           </div>
 
+          <div class="contact-row">
+            <div class="contact-icon" style="background:rgba(45,212,160,0.15)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#2DD4A0" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+            </div>
+            <div style="flex:1">
+              <div class="contact-label">Submission Location</div>
+              <div class="contact-value" id="pickup-location">Security Desk, Ground Floor — Admin Block</div>
+            </div>
+          </div>
+
           <div style="margin-top:14px;padding:10px 14px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);border-radius:10px;font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.6">
-            📌 <strong style="color:#F59E0B">Important:</strong> Please carry a valid photo ID when collecting your item. Operating hours: <strong style="color:white">9 AM – 8 PM</strong>, Mon–Sat.
+            📌 <strong style="color:#F59E0B">Important:</strong> Please hand over the item to the security desk. Operating hours: <strong style="color:white">9 AM – 8 PM</strong>, Mon–Sat.
           </div>
         </div>
 
@@ -1213,7 +1162,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
           </div>
         </div>
 
-        <!-- Best match card with highlighted candidate -->
         <div class="item-detail-card">
           <h3>Best Match — <span id="result-name">Black Wallet</span></h3>
           <div style="display:flex;gap:16px;margin-bottom:14px">
@@ -1237,7 +1185,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
             </div>
           </div>
 
-          <!-- other candidates small row -->
           <div style="border-top:1px solid var(--border);padding-top:14px">
             <div style="font-size:0.78rem;font-weight:700;color:var(--muted);margin-bottom:10px">Other candidates considered</div>
             <div style="display:flex;gap:8px">
@@ -1275,7 +1222,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
       </div>
     </div>
 
-    <!-- ─── SEARCH ─── -->
     <div id="tab-search" class="inner-wrap" style="display:none">
       <div class="pg-title">Search Registry</div>
       <div class="pg-sub">Browse all reported lost and found items.</div>
@@ -1325,7 +1271,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
       </div>
     </div>
 
-    <!-- ─── MY REPORTS ─── -->
     <div id="tab-my-reports" class="inner-wrap" style="display:none">
       <div class="pg-title">My Reports</div>
       <div class="pg-sub">All items you've reported — lost and found.</div>
@@ -1347,7 +1292,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
       </div>
     </div>
 
-    <!-- ─── MESSAGES ─── -->
     <div id="tab-messages" class="inner-wrap" style="display:none">
       <div class="pg-title">Messages</div>
       <div class="pg-sub">Anonymous chats with finders and owners.</div>
@@ -1370,7 +1314,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
       </div>
     </div>
 
-    <!-- ─── NOTIFICATIONS ─── -->
     <div id="tab-notifications" class="inner-wrap" style="display:none">
       <div class="pg-title">Notifications</div>
       <div class="pg-sub">Stay updated on your items.</div>
@@ -1393,7 +1336,6 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
       </div>
     </div>
 
-    <!-- ─── PROFILE ─── -->
     <div id="tab-profile" class="inner-wrap" style="display:none">
       <div class="pg-title">My Profile</div>
       <div class="pg-sub">Manage your account and preferences.</div>
@@ -1438,11 +1380,7 @@ textarea.form-control { resize: vertical; min-height: 96px; line-height: 1.6; }
       </div>
     </div>
 
-  </div><!-- /main-content -->
-</div><!-- /page-app -->
-
-<!-- Toast -->
-<div class="toast" id="toast">
+  </div></div><div class="toast" id="toast">
   <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
   <span id="toast-msg"></span>
 </div>
@@ -1460,14 +1398,11 @@ function goToApp(tab) {
   document.getElementById('page-app').classList.add('active');
   switchTab(tab || 'dashboard');
 }
-// goes back to landing page
 function goToLanding() {
   document.getElementById('page-app').classList.remove('active');
   document.getElementById('page-landing').classList.add('active');
 }
 
-// this function handles all tab switching
-// vinit wanted separate pages but this is easier lol
 function switchTab(tab) {
   ALL_TABS.forEach(t => {
     const el = document.getElementById('tab-' + t);
@@ -1493,8 +1428,6 @@ function switchTab(tab) {
   }
 }
 
-// handles form submit and triggers the scan
-// had a bug here where animation ran twice, fixed it by reordering
 function submitReport() {
   const btn = document.getElementById('submit-btn');
   const spinner = document.getElementById('spinner');
@@ -1507,7 +1440,6 @@ function submitReport() {
     runScanAnimation();
     return;
   }
-  console.log('form submitted');
   spinner.style.display = 'block'; label.textContent = 'Processing…'; btn.disabled = true;
   setTimeout(() => {
     spinner.style.display = 'none'; label.textContent = 'Submit Lost Report'; btn.disabled = false;
@@ -1520,8 +1452,6 @@ function submitReport() {
   }, 1600);
 }
 
-// category data - kushagra added this
-// each category has its own items and stuff
 // ── CATEGORY PROFILES: drives the entire scan & reveal ──
 var CATEGORY_PROFILES = {
   'Electronics': {
@@ -1646,8 +1576,6 @@ function populateResults() {
   if (rl) rl.textContent = locVal;
 }
 
-// ok so this took me like 3 days to get working properly
-// dont ask why there are so many timeouts, it just works
 function runScanAnimation() {
   // ── reset UI ──
   const steps = [0,1,2,3,4];
@@ -1689,7 +1617,6 @@ function runScanAnimation() {
     else scanPhase.appendChild(logWrap);
     logBox = logWrap;
   }
-  console.log('scan started');
   logBox.innerHTML = '';
 
   // ── populate candidate cards from profile ──
@@ -1966,8 +1893,6 @@ function showSubSignals() {
   wrap.style.animation = 'pop-in 0.4s ease';
 }
 
-// closes the reveal overlay and shows result
-// also generates the contact number here
 function closeRevealAndShow() {
   const overlay = document.getElementById('match-reveal-overlay');
   if (overlay) {
@@ -2037,7 +1962,6 @@ function handleDrop(e) {
   }
 }
 
-// simple toast notification - reused everywhere
 function showToast(msg) {
   const t = document.getElementById('toast');
   document.getElementById('toast-msg').textContent = msg;
@@ -2074,11 +1998,8 @@ document.querySelectorAll('.chip').forEach(chip => {
 });
 
 // ── CONTACT NUMBER GENERATOR ──
-// generates a random 10 digit number for the finder
-// vinit suggested this feature
 function generatePhone() {
   // Always starts with 6,7,8,9 (valid Indian mobile)
-  // make sure starts with valid indian mobile digit
   var starts = ['6','7','8','9'];
   var num = starts[Math.floor(Math.random() * starts.length)];
   for (var i = 0; i < 9; i++) num += Math.floor(Math.random() * 10);
@@ -2107,8 +2028,6 @@ function copyText(text, btn) {
 }
 
 // ── TIME-BASED GREETING ──
-// greeting based on time - simple enough
-// had to google the hour ranges lol
 function setGreeting() {
   var h = new Date().getHours();
   var greet;
@@ -2118,17 +2037,13 @@ function setGreeting() {
   else                          greet = 'Good night';
   var el = document.getElementById('dash-greeting');
   if (el) el.textContent = greet + ', Kushagra 👋';
-  // TODO: make name dynamic from profile
 }
 setGreeting();
 
 // ── SIDEBAR TOGGLE ──
 var _sidebarCollapsed = false;
-// sidebar collapse button
-// spent way too long on the css for this
 function toggleSidebar() {
   _sidebarCollapsed = !_sidebarCollapsed;
-  // console.log('sidebar state:', _sidebarCollapsed);
   var sb = document.getElementById('sidebar');
   var mc = document.querySelector('.main-content');
   var icon = document.getElementById('toggle-icon');
@@ -2159,8 +2074,6 @@ function setSearchChip(chip, filter) {
   filterSearch();
 }
 
-// search filter - took a while to figure out the logic
-// basically checks name and category both
 function filterSearch() {
   var query = (document.getElementById('search-input') ? document.getElementById('search-input').value : '').toLowerCase().trim();
   var filter = _searchActiveFilter;
@@ -2226,7 +2139,6 @@ function filterSearch() {
     if (show) visible++;
   });
 
-  // TODO: maybe add animation when no results found
   var emptyEl = document.getElementById('search-empty');
   if (emptyEl) emptyEl.style.display = visible === 0 ? '' : 'none';
 }
