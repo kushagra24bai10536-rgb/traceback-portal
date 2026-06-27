@@ -6,12 +6,13 @@ The idea came from the fact that losing stuff on campus is super annoying and th
 ---
 
 ## What does it do
+TraceBack modernizes the traditional lost and found process through three core steps:
 
-Basically if you lost something (wallet, keys, phone etc) you can report it here.  
-If someone found something they can report that too.  
-The system then tries to match them using AI and shows a confidence score.  
-If match is found, the finder and owner can connect and collect the item from near the parcel area.
+Dual-Sided Reporting: Quickly and easily log lost or found valuables—such as electronics, keys, or documents—with photos and location data.
 
+AI Smart Matching: The system automatically analyzes visual and textual data across all open reports, identifying potential matches and assigning a precise confidence score.
+
+Secure Resolution: When a high-probability match is found, the platform facilitates an anonymous connection between the owner and finder, ensuring a safe item return at a verified campus drop zone.
 ---
 
 ## Tech stack
