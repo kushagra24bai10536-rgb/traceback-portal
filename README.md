@@ -13,8 +13,6 @@ Dual-Sided Reporting: Quickly and easily log lost or found valuables—such as e
 AI Smart Matching: The system automatically analyzes visual and textual data across all open reports, identifying potential matches and assigning a precise confidence score.
 
 Secure Resolution: When a high-probability match is found, the platform facilitates an anonymous connection between the owner and finder, ensuring a safe item return at a verified campus drop zone.
----
-
 ## Tech stack
 
 We planned and are building this using:
