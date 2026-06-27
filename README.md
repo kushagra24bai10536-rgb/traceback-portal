@@ -8,9 +8,9 @@ The idea came from the fact that losing stuff on campus is super annoying and th
 ## What does it do
 
 Basically if you lost something (wallet, keys, phone etc) you can report it here.  
-Tf someone found something they can report that too.  
+If someone found something they can report that too.  
 The system then tries to match them using AI and shows a confidence score.  
-Tf match is found, the finder and owner can connect and collect the item from near the parcel area.
+If match is found, the finder and owner can connect and collect the item from near the parcel area.
 
 ---
 
