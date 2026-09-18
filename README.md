@@ -73,15 +73,13 @@ when a match is found the user gets:
 
 ---
 
-## Team
+
 
 **Kushagra Yadav**  
 kushagra.24bai10536@vitbhopal.ac.in  
 VIT Bhopal University
 
-**Vinit Agarwal**  
-vinit.24bmr10007@vitbhopal.ac.in  
-VIT Bhopal University
+
 
 ---
 
